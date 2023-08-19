@@ -9,6 +9,5 @@ fn main() {
     let content = FileReader::Path::read(&path).unwrap();
 
 
-    BA1K::run(&content);
-
+    BA1N::run(&content);
 }

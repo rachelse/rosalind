@@ -2,20 +2,20 @@ use std::{
         error::Error};
 
 #[derive(Debug)]
-pub struct ba1hParser {
+pub struct Parser {
     pub pattern:String,
     pub text:String,
     pub d:u8,
 }
 
-impl ba1hParser {
+impl Parser {
 
-    pub fn build(lines : &[String] ) -> Result<ba1hParser, &'static str> {
+    pub fn build(lines : &[String] ) -> Result<Parser, &'static str> {
        
         if lines.len() !=3 {
             return Err("Wrong data format");
         } else {
-            Ok(ba1hParser { 
+            Ok(Parser { 
                 pattern: lines[0].clone(), 
                 text: lines[1].clone(),
                 d: lines[2].clone().parse::<u8>().unwrap() })
@@ -24,7 +24,7 @@ impl ba1hParser {
 
 }
 
-pub fn solve(data: &ba1hParser) -> Result<Vec<&str>,Box<dyn Error>> {
+pub fn solve(data: &Parser) -> Result<Vec<&str>,Box<dyn Error>> {
     let pat_len = data.pattern.len();
     let seq_len = data.text.len();
 
@@ -51,7 +51,7 @@ pub fn solve(data: &ba1hParser) -> Result<Vec<&str>,Box<dyn Error>> {
 
 pub fn run(content: &Vec<String>) {
 
-    let data = ba1hParser::build(&content).unwrap();
+    let data = Parser::build(&content).unwrap();
 
     let results = solve(&data).unwrap();
 

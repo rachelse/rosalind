@@ -1,6 +1,7 @@
 pub mod solution;
 pub mod kmer;
 pub mod nucleotide;
+pub mod mathematics;
 
 use std::fs::File;
 use std::io::{BufReader, BufRead};
