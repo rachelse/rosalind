@@ -6,8 +6,8 @@ use rosalind::{FileReader,
 fn main() {
     let args : Vec<String> = env::args().collect();
     let path = FileReader::Path::get(&args).unwrap();
-    let content = FileReader::Path::read(&path).unwrap();
+    let mut content = FileReader::Path::read(&path).unwrap();
 
 
-    BA1N::run(&content);
+    BA2::G::run(&mut content);
 }
