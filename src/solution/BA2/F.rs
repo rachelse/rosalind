@@ -1,5 +1,5 @@
 use rand::{Rng, random};
-use crate::kmer::*;
+use crate::biology::kmer::*;
 pub struct Data {
     k: u8,
     t: u8,

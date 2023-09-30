@@ -1,6 +1,6 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use crate::{*,
-            kmer::*};
+            biology::{nucleotide,kmer::*}};
 
 #[derive(Debug)]
 pub struct Data {

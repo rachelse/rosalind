@@ -1,6 +1,6 @@
 use rand::{Rng, random};
 use std::time::{self, Instant};
-use crate::kmer::*;
+use crate::biology::kmer::*;
 pub struct Data {
     k: u32,
     t: u32,

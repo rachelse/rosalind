@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use crate::nucleotide;
+use crate::biology::nucleotide;
 
 pub struct Kmer {
     pub k : u8,

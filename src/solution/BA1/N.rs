@@ -1,5 +1,5 @@
 use crate::{*,
-            nucleotide::*, 
+            biology::nucleotide::*, 
             mathematics::stats::*};
 
 fn get_variation(pattern: &str, idx: &Vec<u8>) -> Vec<String> {

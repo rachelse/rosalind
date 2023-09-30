@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use crate::{*,
-            kmer::*};
+            biology::kmer::*};
 
 
 #[derive(Debug)]

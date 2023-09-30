@@ -1,4 +1,4 @@
-use crate::kmer::*;
+use crate::biology::kmer::*;
 
 pub struct Data {
     seq : String,

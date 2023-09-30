@@ -1,4 +1,4 @@
-use crate::{kmer::{*, self}, print_answer};
+use crate::{biology::kmer::{*, self}, print_answer};
 
 pub struct Data {
     k : u8,

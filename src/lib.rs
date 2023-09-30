@@ -1,6 +1,5 @@
 pub mod solution;
-pub mod kmer;
-pub mod nucleotide;
+pub mod biology;
 pub mod mathematics;
 
 use std::fs::File;

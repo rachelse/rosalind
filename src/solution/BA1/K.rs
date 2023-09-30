@@ -1,4 +1,4 @@
-use crate::{kmer::*, print_answer};
+use crate::{biology::kmer::*, print_answer};
 use std::collections::BTreeMap;
 
 #[derive(Debug)]

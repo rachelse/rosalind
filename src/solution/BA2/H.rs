@@ -1,4 +1,4 @@
-use crate::kmer::calc_hammdist;
+use crate::biology::kmer::calc_hammdist;
 
 pub fn run(content: &Vec<String>) {
     let pattern = content[0].as_str();
