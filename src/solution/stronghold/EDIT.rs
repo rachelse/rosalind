@@ -1,4 +1,7 @@
-/* Compute the Edit Distance Between Two Strings */
+/* Edit Distance 
+    reference: Same question from BA5G
+*/
+
 use std::collections::HashMap;
 
 pub fn calc_editdist<'T>(s1: &'T str, s2: &'T str, i1:usize, i2: usize, distmap :&mut HashMap<(usize,usize), usize>) -> usize{
@@ -28,8 +31,18 @@ pub fn calc_editdist<'T>(s1: &'T str, s2: &'T str, i1:usize, i2: usize, distmap 
 }
 
 pub fn run(content: &Vec<String>) {
-    let s1 = &content[0];
-    let s2 = &content[1];
+    let mut s1 = String::new();
+    let mut s2 = String::new();
+    let mut i =1;
+    while !content[i].starts_with(">") {
+        s1.push_str(&content[i].as_str());
+        i+=1;
+    }
+    i+=1;
+    while i!=content.len() {
+        s2.push_str(&content[i].as_str());
+        i+=1;
+    }
     let mut distmap: HashMap<(usize, usize), usize> = HashMap::new();
     let edit_dist = calc_editdist(&s1[..],&s2[..],0,0, &mut distmap);
     println!("{edit_dist}");
