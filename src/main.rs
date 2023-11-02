@@ -7,6 +7,7 @@ fn main() {
     let args : Vec<String> = env::args().collect();
     let path = FileReader::Path::get(&args).unwrap();
     let content = FileReader::Path::read(&path).unwrap();
-    BA7::A::run(&content);
+
+    // BA9::C::run(&content);
     // stronghold::EDIT::run(&content);
 }
