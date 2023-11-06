@@ -42,8 +42,6 @@ pub struct Node {
     pub nodetype : NodeType,
     label : String,
     neighbors: Vec<usize>,
-    // internal: Vec<usize>,
-    // children: Vec<usize>
 }
 
 impl Node {
@@ -53,8 +51,6 @@ impl Node {
             nodetype : NodeType::None,
             label : "".to_string(),
             neighbors: Vec::new()
-            // internal: Vec::new(),
-            // children: Vec::new()
         };
 
         if let Ok(num) = id.parse::<usize>() {
@@ -260,8 +256,5 @@ pub fn run(content: &Vec<String>) {
     }
 
     println!("{minimum_score}");
-    // for (i, node) in &tree {
-    //     println!("{i} neighbors{:?} {}", node.neighbors, node.label);
-    // }
     printTree(tree);  
 }

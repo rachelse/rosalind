@@ -1,4 +1,6 @@
-/* Construct the Suffix Tree of a String */
+/* Find the Shortest Non-Shared Substring of Two Strings */
+
+use std::collections::HashSet;
 
 #[derive(PartialEq, Eq, Debug)]
 pub struct Tree {
@@ -68,35 +70,44 @@ impl Tree {
         false
     }
 
-    fn print_child(&self) {
-        for i in &self.rest {
-            if let Some(tree) = i {
-                tree.print();
-            }
+    fn save_uniq_substring(&self, other: &str, prev_substr: String, saver : &mut HashSet<String>) {
+        if other.len() == 0 {
+            return 
         }
-    }
 
-    fn print(&self) {
-        if self.is_root() {
-            self.print_child();
-        } else if self.rest.len() > 1 {
-            println!("{}", self.first.unwrap());
-            self.print_child();
-        } else if self.is_tail(){
-            println!("{}", self.first.unwrap());
+        let first = other.chars().nth(0).unwrap();
+        let new_substr = format!("{prev_substr}{first}");
+        if let Some(idx) = self.find(first) {
+            let r = self.rest.get(idx).unwrap().as_ref().unwrap();
+            r.save_uniq_substring(&other[1..], new_substr, saver);
         } else {
-            print!("{}", self.first.unwrap());
-            self.print_child();
+            saver.insert(new_substr);
+            return
         }
     }
 }
 
 pub fn run(content: Vec<String>){
-    let text = content.get(0).unwrap().to_owned();
-    let mut tree = Tree::new();
+    let text1 = content.get(0).unwrap().to_owned();
+    let text2 = content.get(1).unwrap().to_owned();
 
-    for i in 0..text.len() {
-        tree.construct(&text[i..]);
+    /* construct each tree */
+    let mut tree1 = Tree::new();
+    for i in 0..text1.len() {
+        tree1.construct(&text1[i..]);
     }
-    tree.print();
+
+    let mut tree2 = Tree::new();
+    for i in 0..text2.len() {
+        tree2.construct(&text2[i..]);
+    }
+
+    /* get uniq substring by comparing tree and other text */
+    let mut uniq_substr = HashSet::new();
+    for i in 0..text1.len() {
+        tree2.save_uniq_substring(&text1[i..], String::new(), &mut uniq_substr);
+    }
+
+    let shortest = uniq_substr.iter().enumerate().min_by(|&(i1,x), &(i2,y)| x.len().cmp(&y.len())).map(|(i,x)| x).unwrap();
+    println!("{shortest}");
 }
