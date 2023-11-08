@@ -8,6 +8,6 @@ fn main() {
     let path = FileReader::Path::get(&args).unwrap();
     let content = FileReader::Path::read(&path).unwrap();
 
-    BA9::E::run(content);
+    BA9::N::run(content);
     // stronghold::EDIT::run(&content);
 }

@@ -4,8 +4,8 @@ use crate::biology::kmer::calc_hammdist;
 
 fn _parse_line(line: &String) -> (Node, Node) {
     let parsed: Vec<&str> = line.split("->").collect();
-    let mut n1 = Node::new((parsed[0].to_string()));
-    let mut n2 = Node::new((parsed[1].to_string()));
+    let mut n1 = Node::new(parsed[0].to_string());
+    let mut n2 = Node::new(parsed[1].to_string());
     (n1,n2)
 }
 
