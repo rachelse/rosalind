@@ -1,6 +1,7 @@
 pub mod solution;
 pub mod biology;
 pub mod mathematics;
+pub mod utils;
 
 use std::fs::File;
 use std::io::{BufReader, BufRead};

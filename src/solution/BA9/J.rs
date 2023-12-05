@@ -3,7 +3,8 @@ use std::collections::HashMap;
 
 pub fn numberFirst(last: &Vec<String>) -> Vec<String> {
     let mut first : Vec<String> = last.clone();
-    first.sort_by(|x, y| 
+    first.sort_by(|x, y|
+        /* sort lexicographically */ 
         if x[..1] != y[..1] {
             x.cmp(y)
         } else {
