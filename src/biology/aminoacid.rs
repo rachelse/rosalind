@@ -1,6 +1,49 @@
 use std::collections::HashMap;
+use phf::phf_map;
 
 pub static AMINOACID : [char;20]= ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y'];
+pub static RNA_CODON1: phf::Map<&'static str, char> = phf_map! {
+    "UUU" => 'F', "UCU" => 'S', "UAU" => 'Y',  "UGU" => 'C',
+    "UUC" => 'F', "UCC" => 'S', "UAC" => 'Y',  "UGC" => 'C',
+    "UUA" => 'L', "UCA" => 'S', "UAA" => '\0', "UGA" => '\0',
+    "UUG" => 'L', "UCG" => 'S', "UAG" => '\0', "UGG" => 'W',
+
+    "CUU" => 'L', "CCU" => 'P', "CAU" => 'H',  "CGU" => 'R',
+    "CUC" => 'L', "CCC" => 'P', "CAC" => 'H',  "CGC" => 'R',
+    "CUA" => 'L', "CCA" => 'P', "CAA" => 'Q',  "CGA" => 'R',
+    "CUG" => 'L', "CCG" => 'P', "CAG" => 'Q',  "CGG" => 'R', 
+
+    "AUU" => 'I', "ACU" => 'T', "AAU" => 'N',  "AGU" => 'S',
+    "AUC" => 'I', "ACC" => 'T', "AAC" => 'N',  "AGC" => 'S',
+    "AUA" => 'I', "ACA" => 'T', "AAA" => 'K',  "AGA" => 'R',
+    "AUG" => 'M', "ACG" => 'T', "AAG" => 'K',  "AGG" => 'R',
+
+    "GUU" => 'V', "GCU" => 'A', "GAU" => 'D',  "GGU" => 'G',
+    "GUC" => 'V', "GCC" => 'A', "GAC" => 'D',  "GGC" => 'G',
+    "GUA" => 'V', "GCA" => 'A', "GAA" => 'E',  "GGA" => 'G',
+    "GUG" => 'V', "GCG" => 'A', "GAG" => 'E',  "GGG" => 'G',  
+};
+pub static DNA_CODON1: phf::Map<&'static str, char> = phf_map! {
+    "TTT" => 'F', "TCT" => 'S', "TAT" => 'Y',  "TGT" => 'C',
+    "TTC" => 'F', "TCC" => 'S', "TAC" => 'Y',  "TGC" => 'C',
+    "TTA" => 'L', "TCA" => 'S', "TAA" => '\0', "TGA" => '\0',
+    "TTG" => 'L', "TCG" => 'S', "TAG" => '\0', "TGG" => 'W',
+
+    "CTT" => 'L', "CCT" => 'P', "CAT" => 'H',  "CGT" => 'R',
+    "CTC" => 'L', "CCC" => 'P', "CAC" => 'H',  "CGC" => 'R',
+    "CTA" => 'L', "CCA" => 'P', "CAA" => 'Q',  "CGA" => 'R',
+    "CTG" => 'L', "CCG" => 'P', "CAG" => 'Q',  "CGG" => 'R', 
+
+    "ATT" => 'I', "ACT" => 'T', "AAT" => 'N',  "AGT" => 'S',
+    "ATC" => 'I', "ACC" => 'T', "AAC" => 'N',  "AGC" => 'S',
+    "ATA" => 'I', "ACA" => 'T', "AAA" => 'K',  "AGA" => 'R',
+    "ATG" => 'M', "ACG" => 'T', "AAG" => 'K',  "AGG" => 'R',
+
+    "GTT" => 'V', "GCT" => 'A', "GAT" => 'D',  "GGT" => 'G',
+    "GTC" => 'V', "GCC" => 'A', "GAC" => 'D',  "GGC" => 'G',
+    "GTA" => 'V', "GCA" => 'A', "GAA" => 'E',  "GGA" => 'G',
+    "GTG" => 'V', "GCG" => 'A', "GAG" => 'E',  "GGG" => 'G',  
+};
 
 pub struct ScoreMatrix {
     pub matrix: HashMap<(char,char),i32>    

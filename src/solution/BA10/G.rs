@@ -2,7 +2,7 @@
 
 use core::fmt;
 use crate::utils::float::*;
-use super::{E,F, A};
+use super::{E,F,A};
 
 fn print_transition(matrix: &Vec<Vec<f64>>, rownames: &Vec<State>) {
     for s in rownames {
@@ -234,8 +234,12 @@ pub fn run(content: Vec<String>) {
     }
     seed_vec.push(State::End);
 
-    let (score, tracker) = MultipleSequenceAlignment(text,&transition, &emission, seed.len(), &seed_vec, &alphabet);
+    print_transition(&transition, &seed_vec);
 
+    let (score, tracker) = MultipleSequenceAlignment(text,&transition, &emission, seed.len(), &seed_vec, &alphabet);
+    for (i,line) in score.iter().enumerate() {
+        println!("{i} {line:?}");
+    }
     let mut rownames = seed_vec.clone();
     rownames.pop();
     rownames.remove(0);
