@@ -1,6 +1,6 @@
 # Rosalind
-Solution of [Rosalind problems](http://rosalind.info/problems/) in Rust
-Find me in rosalind [here](https://rosalind.info/users/eunbelivable/)
+> Solution of [Rosalind problems](http://rosalind.info/problems/) in Rust<br>
+> Find me at the [website](https://rosalind.info/users/eunbelivable/)
 
 ## How to run
 1. specify the corresponding module in `src/main.rs`
