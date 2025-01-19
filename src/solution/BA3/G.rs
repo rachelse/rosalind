@@ -10,19 +10,13 @@
 use std::collections::{BTreeMap, HashSet};
 use super::F::{parse_input, find_cycle, print_path};
 
-pub fn run(content: Vec<String>) {
-    let mut from_to: BTreeMap<usize, Vec<usize>> = BTreeMap::new();
-    let mut node_degree: BTreeMap<usize, (usize,usize)> = BTreeMap::new();
-    let mut unexplored_edge: usize = 0;
-    let mut start_nodes: HashSet<usize> = HashSet::new();
-
-    parse_input(&content, &mut from_to, &mut node_degree, &mut unexplored_edge, &mut start_nodes);
-
-    /* transform eulerian path to cycle */
+pub fn path_to_cycle(
+        from_to: &mut BTreeMap<usize, Vec<usize>>, node_degree: &mut BTreeMap<usize, (usize,usize)>, unexplored_edge: &mut usize
+    ) -> (usize, usize) {
     let mut p_start=0;
     let mut p_end = 0;
 
-    for (node, (d_in, d_out)) in &node_degree {
+    for (node, (d_in, d_out)) in node_degree.iter() {
         if d_in < d_out {
             p_start = *node;
         } else if d_in > d_out {
@@ -32,12 +26,11 @@ pub fn run(content: Vec<String>) {
     from_to.entry(p_end).and_modify(|nexts| nexts.push(p_start)).or_insert(vec![p_start]);
     node_degree.entry(p_end).and_modify(|degree| degree.1+=1);
     node_degree.entry(p_start).and_modify(|degree| degree.0+=1); 
-    unexplored_edge+=1;
+    *unexplored_edge+=1; 
+    (p_start, p_end)
+}
 
-    /* construct eulerian cycle */
-    let cycle = find_cycle(&mut unexplored_edge, &mut from_to, &mut start_nodes, &mut node_degree);
-
-    /* transform cycle to path: remove p_end -> p_start */
+pub fn cycle_to_path(cycle: Vec<usize>, p_start: usize, p_end: usize) -> Vec<usize> {
     let mut i_end= 0 ;
     for i in 0..cycle.len()-1 {
         if (*cycle.get(i).unwrap() == p_end) && (*cycle.get(i+1).unwrap()==p_start) {
@@ -51,7 +44,26 @@ pub fn run(content: Vec<String>) {
     }
     for i in 1..=i_end {
         path.push(cycle[i])
-    }
+    } 
+    path
+}
+
+pub fn run(content: Vec<String>) {
+    let mut from_to: BTreeMap<usize, Vec<usize>> = BTreeMap::new();
+    let mut node_degree: BTreeMap<usize, (usize,usize)> = BTreeMap::new();
+    let mut unexplored_edge: usize = 0;
+    let mut start_nodes: HashSet<usize> = HashSet::new();
+
+    parse_input(&content, &mut from_to, &mut node_degree, &mut unexplored_edge, &mut start_nodes);
+
+    /* transform eulerian path to cycle */
+    let (p_start, p_end) = path_to_cycle(&mut from_to, &mut node_degree, &mut unexplored_edge);
+
+    /* construct eulerian cycle */
+    let cycle = find_cycle(&mut unexplored_edge, &mut from_to, &mut start_nodes, &mut node_degree);
+
+    /* transform cycle to path: remove p_end -> p_start */
+    let path = cycle_to_path(cycle, p_start, p_end);
 
     print_path(&path);
 }
