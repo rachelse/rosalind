@@ -129,7 +129,7 @@ pub fn find_cycle( unexplored_edge : &mut usize,
 
             start = next;
             let _nexts = from_to.get_mut(&start);
-            nexts = from_to.get_mut(&start).unwrap()   ;
+            nexts = from_to.get_mut(&start).unwrap();
         }
         start_nodes.remove(&start); 
 
