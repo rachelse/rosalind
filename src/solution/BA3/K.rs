@@ -13,17 +13,17 @@ use std::collections::BTreeMap;
 use crate::print_answer;
 
 #[derive(Clone, Debug)]
-struct Node {
-    id: usize,
-    pattern: String,
-    in_degree: usize,
-    out_degree: usize,
-    neighbors: Vec<usize>,
-    branch: bool
+pub struct Node {
+    pub id: usize,
+    pub pattern: String,
+    pub in_degree: usize,
+    pub out_degree: usize,
+    pub neighbors: Vec<usize>,
+    pub branch: bool
 }
 
 impl Node {
-    fn new(id: usize, pattern: &str) -> Node {
+    pub fn new(id: usize, pattern: &str) -> Node {
         Node {
             id: id, pattern: pattern.to_string(),
             in_degree: 0, out_degree: 0,
@@ -33,7 +33,7 @@ impl Node {
 
 }
 
-fn find_startnode(nodes: &Vec<Node>) -> Option<usize> {
+pub fn find_startnode(nodes: &Vec<Node>) -> Option<usize> {
     let mut start: Option<usize> = None;
     for node in nodes {
         if (node.in_degree == 0 && node.out_degree > 0) {

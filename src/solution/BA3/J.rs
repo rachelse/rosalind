@@ -13,13 +13,14 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 use super::G::{path_to_cycle, cycle_to_path};
 use super::F::find_cycle;
 
-struct VirtualKmer {
-    first: String,
-    second: String
+#[derive(Debug)]
+pub struct VirtualKmer {
+    pub first: String,
+    pub second: String
 }
 
 impl VirtualKmer {
-    fn new(input: &String) -> VirtualKmer {
+    pub fn new(input: &String) -> VirtualKmer {
         let f_s: Vec<&str> = input.split("|").collect();
         VirtualKmer {
             first: f_s[0].to_string(),
@@ -27,13 +28,13 @@ impl VirtualKmer {
         }
     }
 
-    fn prefix(&self) -> (String, String) {
+    pub fn prefix(&self) -> (String, String) {
         let k = self.first.len();
         let pref: (String, String) = (self.first[0..k-1].to_string(), self.second[0..k-1].to_string());
         return pref;
     }
 
-    fn suffix(&self) -> (String, String) {
+    pub fn suffix(&self) -> (String, String) {
         let k = self.first.len();
         let suff: (String, String) = (self.first[1..k].to_string(), self.second[1..k].to_string());
         return suff;
