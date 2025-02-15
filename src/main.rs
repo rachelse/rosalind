@@ -8,7 +8,7 @@ fn main() {
     let path = FileReader::Path::get(&args).unwrap();
     let content = FileReader::Path::read(&path).unwrap();
 
-    BA3::M::run(content);
+    BA9::B::run(content);
     // BA4::B::run(content);
     // stronghold::MOTZ::run(content);
 }
