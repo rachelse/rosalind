@@ -3,7 +3,7 @@
 use crate::print_answer;
 use crate::solution::BA9::{I,M,Q};
 
-fn idx_to_symbol(idx: usize) -> Option<char> {
+pub fn idx_to_symbol(idx: usize) -> Option<char> {
     match idx {
         0 => {return Some('&')},
         1 => {return Some('A')},
@@ -14,7 +14,7 @@ fn idx_to_symbol(idx: usize) -> Option<char> {
     }
 }
 
-pub fn run(content:Vec<String>) {
+pub fn run(content: Vec<String>) {
     let text = &content[0];
 
     let bwt_text = I::BWT(text);
