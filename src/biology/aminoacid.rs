@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use phf::phf_map;
 
-pub static AMINOACID : [char;20]= ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y'];
 pub static RNA_CODON1: phf::Map<&'static str, char> = phf_map! {
     "UUU" => 'F', "UCU" => 'S', "UAU" => 'Y',  "UGU" => 'C',
     "UUC" => 'F', "UCC" => 'S', "UAC" => 'Y',  "UGC" => 'C',
@@ -23,6 +22,7 @@ pub static RNA_CODON1: phf::Map<&'static str, char> = phf_map! {
     "GUA" => 'V', "GCA" => 'A', "GAA" => 'E',  "GGA" => 'G',
     "GUG" => 'V', "GCG" => 'A', "GAG" => 'E',  "GGG" => 'G',  
 };
+
 pub static DNA_CODON1: phf::Map<&'static str, char> = phf_map! {
     "TTT" => 'F', "TCT" => 'S', "TAT" => 'Y',  "TGT" => 'C',
     "TTC" => 'F', "TCC" => 'S', "TAC" => 'Y',  "TGC" => 'C',
@@ -43,6 +43,20 @@ pub static DNA_CODON1: phf::Map<&'static str, char> = phf_map! {
     "GTC" => 'V', "GCC" => 'A', "GAC" => 'D',  "GGC" => 'G',
     "GTA" => 'V', "GCA" => 'A', "GAA" => 'E',  "GGA" => 'G',
     "GTG" => 'V', "GCG" => 'A', "GAG" => 'E',  "GGG" => 'G',  
+};
+
+pub static AMINOACID : [char;20]= [
+    'A', 'C', 'D', 'E', 'F', 
+    'G', 'H', 'I', 'K', 'L', 
+    'M', 'N', 'P', 'Q', 'R', 
+    'S', 'T', 'V', 'W', 'Y'
+];
+
+pub static AMINOACID_MASS: phf::Map<char, usize> = phf_map! {
+    'A' => 71,  'C' => 103, 'D' => 115, 'E' => 129, 'F' => 147, 
+    'G' => 57,  'H' => 137, 'I' => 113, 'K' => 128, 'L' => 113, 
+    'M' => 131, 'N' => 114, 'P' => 97,  'Q' => 128, 'R' => 156, 
+    'S' => 87,  'T' => 101, 'V' => 99,  'W' =>186, 'Y' => 163
 };
 
 pub struct ScoreMatrix {
