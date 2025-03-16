@@ -76,11 +76,27 @@ pub fn run(content: Vec<String>) {
 
     mass_uniq.sort();
 
-    let mut total = 0;
+    // Approach1: Greedy Algorithm
+    // let mut total = 0;
+    // for max_idx in 0..mass_uniq.len() {
+    //     let init = vec![0;mass_uniq.len()];
+    //     bruteforce(max_idx, m, &mut total, init, &mass_uniq) //, &mass2aa);
+    // }
+    // println!("{total}");
 
-    for max_idx in 0..mass_uniq.len() {
-        let init = vec![0;mass_uniq.len()];
-        bruteforce(max_idx, m, &mut total, init, &mass_uniq) //, &mass2aa);
+    // Approach2: Dynamic programming
+    let mut mass_dp : Vec<usize> = vec![0;m+1];
+    let init = mass_dp.get_mut(0).unwrap();
+    *init = 1;
+
+    for mass in *mass_uniq.first().unwrap()..=m {
+        for aa_mass in mass_uniq.iter() {
+            if (mass >= *aa_mass) {
+                let src = *mass_dp.get(mass - aa_mass).unwrap();
+                let this = mass_dp.get_mut(mass).unwrap();
+                *this += src;
+            }
+        }
     }
-    println!("{total}");
+    println!("{}", mass_dp.last().unwrap());
 }

@@ -64,12 +64,6 @@ impl Node {
         self.ripe = false;
     }
 
-    // fn findClr(&mut self, tree: &Vec<Node>) {
-    //     for child in &self.children {
-
-    //     }
-    // }
-
     fn isRipe(&self) -> bool {
         self.ripe
     }
@@ -79,7 +73,6 @@ fn parse_input(input: &Vec<String>, tree: &mut Vec<Node>) {
     const DIVIDER: &str = "-";
     let mut idx = 0;
     let mut adj_list : bool = true;
-    let mut ripe = 0;
 
     while adj_list {
         let line = input.get(idx).unwrap();
@@ -106,9 +99,7 @@ fn parse_input(input: &Vec<String>, tree: &mut Vec<Node>) {
         let mut clr: NodeColor = NodeColor::from(_clr);
         tree.get_mut(id).unwrap().setClr(clr);
         idx+=1;
-        // ripe-=1;
     }
-    // return ripe
 }
 
 fn get_ripes(tree: &Vec<Node>) -> Vec<usize> {
