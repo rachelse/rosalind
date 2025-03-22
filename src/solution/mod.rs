@@ -1,5 +1,6 @@
 pub mod INI;
 pub mod stronghold;
+pub mod algorithm;
 pub mod BA1;
 pub mod BA2;
 pub mod BA3;
