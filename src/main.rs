@@ -10,5 +10,5 @@ fn main() {
 
     // BA4::D::run(content);
     // stronghold::MOTZ::run(content);
-    algorithm::DEG::run(content);
+    algorithm::DDEG::run(content);
 }

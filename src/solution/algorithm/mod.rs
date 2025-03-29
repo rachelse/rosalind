@@ -9,3 +9,5 @@
 
 pub mod BINS;
 pub mod DEG;
+pub mod INS;
+pub mod DDEG;
