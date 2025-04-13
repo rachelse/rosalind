@@ -7,7 +7,7 @@
  * Copyright: Rachel Seongeun Kim
  */
 
-pub fn run(content:Vec<String>) {
+ pub fn run(content:Vec<String>) {
     let node_edge: Vec<usize> = content.get(0).unwrap().split(" ").map(|x| x.parse::<usize>().unwrap()).collect();
     let mut it = node_edge.iter();
     let (node, edge) = (*it.next().unwrap(), *it.next().unwrap());

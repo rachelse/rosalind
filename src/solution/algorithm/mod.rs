@@ -13,3 +13,5 @@ pub mod INS;
 pub mod DDEG;
 pub mod MAJ;
 pub mod MER;
+pub mod MS;
+pub mod SUM2;

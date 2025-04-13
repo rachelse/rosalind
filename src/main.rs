@@ -10,5 +10,5 @@ fn main() {
 
     // BA4::D::run(content);
     // stronghold::MOTZ::run(content);
-    algorithm::MER::run(content);
+    algorithm::SUM2::run(content);
 }
